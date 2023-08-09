@@ -1,0 +1,81 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    padding: 20px;
+}
+
+.circle {
+    width: 250px;
+    height: 250px;
+    margin-top: 5%;
+    background-color: white; /* Yuvarlak arkaplan rengini buradan belirleyebilirsiniz */
+    border-radius: 50%;
+    border: 10px solid #0D6EFD; /* border rengini ve genişliğini ayarlayın */
+}
+
+.state {
+    background-color: white; /* Yuvarlak arkaplan rengini buradan belirleyebilirsiniz */
+    border-radius: 15px;
+    border: 10px solid #0D6EFD;
+}
+
+
+
+
+@media only screen and (max-width: 1300px) {
+    .circle {
+        width: 200px;
+        height: 200px;
+    }
+
+    .state {
+        background-color: white; /* Yuvarlak arkaplan rengini buradan belirleyebilirsiniz */
+        border-radius: 15px;
+        border: 10px solid #0D6EFD;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .state {
+        background-color: white; /* Yuvarlak arkaplan rengini buradan belirleyebilirsiniz */
+        border-radius: 15px;
+        border: 10px solid #0D6EFD;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .circle {
+        width: 160px;
+        height: 160px;
+    }
+
+    .state {
+        background-color: white; /* Yuvarlak arkaplan rengini buradan belirleyebilirsiniz */
+        border-radius: 15px;
+        border: 10px solid #0D6EFD;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .state {
+        background-color: white; /* Yuvarlak arkaplan rengini buradan belirleyebilirsiniz */
+        border-radius: 15px;
+        border: 10px solid #0D6EFD;
+    }
+}

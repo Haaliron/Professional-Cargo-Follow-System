@@ -1,0 +1,146 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kargo Detayları</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/css/Details.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <nav class="navbar bg-primary">
+        <div class="container-fluid justify-content-center">
+            <h1 class="navbar-brand text-white">Haaliron Kargo</h1>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <div class="circle">
+            <img src="https://cdn-icons-png.flaticon.com/512/758/758388.png?w=740&t=st=1690375519~exp=1690376119~hmac=197926d90c4fba1ded7e870dbbe894c96dbf989af0a72191e612f0debc109dec" style="width: 70%; height: 70%; margin-top: 15%; margin-left: 15%;">
+        </div>
+    </div>
+
+    <div class="container boxx">
+        <h3 class="font-monospace bg-white rounded-2 border border-5 border-primary text-primary p-3 text-center" id="takipNoText">
+            Takip No: 12345678910
+        </h3>
+    </div>
+
+    <div class="container boxx">
+        <div class="row state p-4">
+            <div class="">
+                <h4 class="text-center" id="orderStateText">
+                    Sipariş Durumu: Yükleniyor...
+                </h4>
+                <div class="mt-5">
+                    <button class="container-fluid btn btn-primary" data-bs-toggle="modal" data-bs-target="#DetailsModal">Detaylar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DetailsModal" tabindex="-1" aria-labelledby="DetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sipariş Detayları</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Sipariş Oluşturulma Tarihi: <span id="orderDateText"></span></p>
+                    <p>Gönderici Şube: <span id="senderBranchText"></span></p>
+                    <p>Göndereci Adı: <span id="senderNameText"></span></p>
+                    <p>Göndereci Adresi: <span id="senderAddressText"></span></p>
+                    <p>Alıcı Adı: <span id="recipientNameText"></span></p>
+                    <p>Alıcı Adresi: <span id="recipientAddressText"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+    // AJAX isteğini yapacak olan fonksiyon
+    function makeAjaxRequest() {
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("Datas", "Interface")",
+            success: function (data) {
+                console.log(data); // Verileri konsola yazdırma
+                updateOrderState(data.DataList[0].ORDER_STATE);
+                
+                // Modal içeriğini doldurma işlemi
+                fillModalData(data);
+                fillFnumData(data);
+            },
+            error: function () {
+                // Hata durumunda yapılacak işlemler
+                alert("Hata oluştu!");
+            }
+        });
+    }
+
+    // Sipariş durumunu güncelleme işlevi
+    function updateOrderState(orderState) {
+        // Burada gelen JSON verilerini uygun şekilde işleyerek h4 etiketini güncelleme işlemi
+        var orderStateText = "Sipariş Durumu: ";
+        switch (orderState) {
+            case 1:
+                orderStateText += "Gönderi Alındı";
+                break;
+            case 2:
+                orderStateText += "Gönderi Yolda";
+                break;
+            case 3:
+                orderStateText += "Teslim Edildi";
+                break;
+            default:
+                orderStateText += "Bilinmeyen Durum";
+                break;
+        }
+        // h4 etiketini güncelleme
+        $("#orderStateText").text(orderStateText);
+    }
+
+    // Modal içeriğini doldurma işlevi
+        function fillModalData(data) {
+            console.log(data.DateValue[0].ORDER_CREATE_DATE);
+            var dateValue = data.DateValue;
+            $("#orderDateText").text(dateValue);
+        $("#senderBranchText").text(data.DataList[0].SENDER_OFFICE);
+        $("#senderNameText").text(data.DataList[0].CUSTOMER_NAME);
+        $("#senderAddressText").text(data.DataList[0].SENDER_NEIGHBOR + " " + data.DataList[0].SENDER_ADDRESS + " " + data.DataList[0].SENDER_CITY + " " + data.DataList[0].SENDER_DISTRICT );
+        $("#recipientNameText").text(data.DataList[0].RECEIVER_NAME);
+        $("#recipientAddressText").text(data.DataList[0].RECEIVER_NEIGHBOR + " " + data.DataList[0].RECEIVER_ADDRESS + " " + data.DataList[0].RECEIVER_CITY + " " + data.DataList[0].RECEIVER_DISTRICT);
+        }
+
+      
+
+        function fillFnumData(data)
+        {
+           
+            $("#takipNoText").text("Takip No : " + data.DataList[0].ORDER_FNUM);
+        }
+
+    // Sayfa yüklendiğinde AJAX isteği yap
+    makeAjaxRequest();
+});
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

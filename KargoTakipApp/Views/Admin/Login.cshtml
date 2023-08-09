@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/indexStyle.css">
+    <link rel="stylesheet" href="~/Content/fonts/poppins/Poppins-Bold.ttf">
+
+</head>
+<body>
+
+
+
+    <main class="login-form login">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card cardheight">
+                        <div class="card-body d-flex">
+                            <div class="image-container">
+                                <img id="image-size" src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?size=626&ext=jpg" class="img-fluid" alt="Logo">
+                            </div>
+                            <div class="vr"></div>
+
+                            <div class=" card-inner col-md-4 mt-5 loginmargin">
+                                <span class="h2margin">Giriş Yap</span>
+                                <form action="" method="">
+                                    <div class="mb-3 mt-2">
+                                        <label for="username" class="form-label"></label>
+                                        <input type="text" id="email_address" placeholder="Kullanıcı Adı" class="form-control" name="username" required autofocus>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="password" class="form-label"></label>
+                                        <input type="password" id="password" placeholder="Şifre" class="form-control" name="password" required>
+                                    </div>
+                                    <div class="d-grid mt-5">
+                                        <a href="@Url.Content("~/Admin/CreateOrder" )" type="submit" class="btn btn-primary">
+                                            Giriş Yap
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src="~/Scripts/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function checkImageSize()
+    {
+        var image = document.getElementById('image-size');
+        if(window.innerWidth < 480)
+        {
+            image.classList.add('c-none');
+        }
+        else
+        {
+            image.classList.remove('c-none');
+        }
+    }
+
+    window.addEventListener('load',checkImageSize);
+    window.addEventListener('resize',checkImageSize)
+    </script>
+</body>
+</html>

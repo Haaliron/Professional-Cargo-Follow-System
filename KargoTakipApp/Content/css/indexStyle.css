@@ -1,0 +1,286 @@
+        body 
+        {
+          background-image: url('../res/loginBG.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center bottom;
+          height: 100vh;
+          margin: 0;
+        }
+
+        .c-none
+        {
+            display: none;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../fonts/poppins/Poppins-Bold.ttf') format('truetype'); 
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .image-container 
+        {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+    
+        .image-container img 
+        {
+        max-width: 100%;
+        max-height: 100%;
+        }
+
+        .vr 
+        {
+            border-left: 3px solid #e622cf;
+            position: absolute;
+            left: 50%;
+            margin-top: 7%;
+            top: 0;
+            opacity: 40%;
+        }
+
+        .cardheight {
+        min-height: 350px;
+    }
+    
+
+    @media (min-width: 480px) {
+        .cardheight {
+            min-height: 350px;
+        }
+
+        .vr
+        {
+            min-height: 270px;
+        }
+
+        #image-size
+        {
+            margin-left: 32%;
+            margin-top: 110%;
+            min-width: 180px;
+            min-height: 180px;
+        }
+
+        
+        
+    }
+
+    @media (min-width: 574px) {
+        .cardheight {
+            min-height: 400px;
+        }
+
+        .vr
+        {
+            min-height: 320px;
+        }
+
+        #image-size
+        {
+            margin-left: 50%;
+            margin-top: 180%;
+            min-width: 220px;
+            min-height: 220px;
+        }
+        
+    }
+
+    
+
+    @media (min-width: 769px) {
+        .cardheight {
+            min-height: 400px;
+        }
+
+        .vr
+        {
+            min-height: 320px;
+        }
+
+        #image-size
+        {
+            margin-left: 75%;
+            margin-top: 180%;
+            min-width: 220px;
+            min-height: 220px;
+        }
+        
+    }
+
+    
+
+    @media (min-width: 1000px) {
+        .cardheight {
+            min-height: 450px;
+        }
+
+        .vr
+        {
+            min-height: 350px;
+        }
+
+        #image-size
+        {
+            margin-left: 150%;
+            margin-top: 180%;
+            min-width: 250px;
+            min-height: 250px;
+        }
+        
+    }
+
+    @media (min-width: 1200px) {
+        .cardheight {
+            min-height: 500px;
+        }
+
+        .vr
+        {
+            min-height: 370px;
+        }
+
+        #image-size
+        {
+            margin-left: 192%;
+            margin-top: 210%;
+            min-width: 330px;
+            min-height: 330px;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .cardheight {
+            min-height: 550px;
+        }
+
+        .vr
+        {
+            min-height: 400px;
+        }
+
+        #image-size
+        {
+            margin-left: 250%;
+            margin-top: 240%;
+            min-width: 350px;
+            min-height: 350px;
+        }
+    }
+
+    @media (min-width: 1500px) {
+        .cardheight {
+            min-height: 600px;
+        }
+
+        .vr
+        {
+            min-height: 450px;
+        }
+
+        #image-size
+        {
+            margin-left: 250%;
+            margin-top: 270%;
+            min-width: 370px;
+            min-height: 370px;
+        }
+    }
+
+    .loginmargin {
+        margin-left: 46%;
+    }
+
+    .h2margin {
+        margin-left: 33%;
+        font-family: 'Poppins', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    
+
+    @media (max-width: 1500px) {
+        .loginmargin {
+            margin-left: 44%;
+        }
+        .h2margin {
+            font-size: 25px;
+        }       
+    }
+
+    @media (max-width: 1200px) {
+        .loginmargin {
+            margin-left: 43%;
+        }
+
+        .h2margin {
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 1150px) {
+        .loginmargin {
+            margin-left: 40%;
+        }
+        .h2margin {
+            font-size: 20px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .loginmargin {
+            margin-left: 34%;
+        }
+        .h2margin {
+            font-size: 20px;
+        }
+    }
+
+    @media (width: 768px) {
+        .loginmargin {
+            margin-left: 33%;
+        }
+        .h2margin {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 767.99px) {
+        .loginmargin {
+            margin-left: 25%;
+        }
+        .h2margin {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 574px) {
+        .loginmargin {
+            margin-left: 20%;
+        }
+        .h2margin {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .loginmargin {
+            margin-left: 20%;
+        }
+        .h2margin {
+            font-size: 18px;
+        }
+    }
+
+    
+
+    
+
+    

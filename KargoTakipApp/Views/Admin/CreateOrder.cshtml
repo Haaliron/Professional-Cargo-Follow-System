@@ -1,0 +1,698 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="~/Content/css/panelStyle.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class=" navbar-collapse d-sm-flex" id="navbarNav">
+                <div class="navbar-section navbar-section1">
+                    <ul class="navbar-nav ms-auto me-auto">
+                        <li class="nav-item">
+                            <button class="nav-link btn btn-link d-flex btn-size" id="btn-page1" onclick="openPage('page1')">
+                                <ion-icon name="checkmark-circle-outline" size="large"></ion-icon>Aktif Siparişler
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-section navbar-section2">
+                    <ul class="navbar-nav ms-auto me-auto">
+                        <li class="nav-item">
+                            <button class="nav-link btn btn-link d-flex btn-size" id="btn-page2" onclick="openPage('page2')">
+                                <ion-icon name="add-circle-outline" size="large"></ion-icon>Sipariş Oluştur
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-section navbar-section3">
+                    <ul class="navbar-nav ms-auto me-auto">
+                        <li class="nav-item">
+                            <button class="nav-link btn btn-link d-flex btn-size" id="btn-page3" onclick="openPage('page3')">
+                                <ion-icon name="time-outline" size="large"></ion-icon>Pasif Siparişler
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-5">
+        <div class="col-" id="page1" style="display: none;">
+            <!-- Sayfa 1 içeriği -->
+
+            <div class="overflow-auto">
+                <table id="activeTable" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Detaylar</th>
+                            <th>Takip No</th>
+                            <th>Gönderici Türü</th>
+                            <th>Alıcı Türü</th>
+                            <th>Gönderici İsim</th>
+                            <th>Alıcı İsim</th>
+                            <th>Gönderilen Şehir</th>
+                            <th>Düzenle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button class="btn btn-primary">Detaylar</button></td>
+                            <td>123123123123123</td>
+                            <td>Bireysel</td>
+                            <td>Bireysel</td>
+                            <td>Ahmet ODUN</td>
+                            <td>Mustafa KÜTÜK</td>
+                            <td>Bursa</td>
+                            <td><button class="btn btn-outline-primary">Düzenle</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-primary">Detaylar</button></td>
+                            <td>123412341234123</td>
+                            <td>Kurumsal</td>
+                            <td>Bireysel</td>
+                            <td>Meditek A.Ş</td>
+                            <td>Enes GİZLİ</td>
+                            <td>İstanbul</td>
+                            <td><button class="btn btn-outline-primary">Düzenle</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-primary">Detaylar</button></td>
+                            <td>123451234512345</td>
+                            <td>Bireysel</td>
+                            <td>Kurumsal</td>
+                            <td>Enes GİZLİ</td>
+                            <td>Meditek A.Ş</td>
+                            <td>Konya</td>
+                            <td><button class="btn btn-outline-primary">Düzenle</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div id="page2" style="display: none;">
+            <!-- Sayfa 2 Başı -->
+            <form id="createOrderForm">
+
+                <div class="row text-font">
+
+                    <!-- 1.Parça Başlangıç-->
+
+                    <div class="card col-md-4 me-auto mt-0 mb-3">
+                        <span class="input-group-text mt-2 justify-content-center mb-3" id="basic-addon1">GÖNDERİCİ BİLGİLERİ</span>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-control mt-2 mb-2 me-auto">
+                                    <input checked class="form-check-input" type="radio" name="options1" id="radio1" value="0">
+                                    <label class="form-check-label" for="radio1">Bireysel</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-control mt-2 mb-2 me-auto">
+                                    <input class="form-check-input" type="radio" name="options1" id="radio2" value="1">
+                                    <label class="form-check-label" for="radio2">Kurumsal</label>
+                                </div>
+                            </div>
+
+
+                            <div id="bireyselKisi">
+                                <div class="row" id="senderTCPhoneRow">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input maxlength="11" id="senderTC" name="senderTC" type="number" class="form-control" placeholder="*Gönderici TC'si..." oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input id="senderPhone" name="senderPhone" maxlength="11" type="number" class="form-control" placeholder="Gönderici Telefonu..." oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                                    </div>
+                                </div>
+
+                                <div class="row inputVeri" id="senderNameSurnameRow">
+                                    <div class="col-md-6" id="senderNameDiv">
+                                        <input id="senderName" name="senderName" maxlength="30" type="text" class="form-control mb-2 mt-2" placeholder="Gönderici Adı..." oninput="validateInput(this)" required>
+                                    </div>
+
+                                    <div class="col-md-6" id="senderSurnameDiv">
+                                        <input id="senderSurname" name="senderSurname" maxlength="30" type="text" class="form-control mb-2 mt-2" placeholder="Gönderici Soyadı..." oninput="validateInput(this)" required>
+                                    </div>
+                                </div>
+
+                                <div class="row " id="senderCityDistrictRow">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <select id="senderCity" name="senderCity" class="form-select" required>
+                                            <option selected disabled hidden value="">Gönderici Şehri...</option>
+                                            <option disabled value="">Şehir Seçiniz...</option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <select id="senderDistrict" name="senderDistrict" class="form-select" required>
+                                            <option selected disabled hidden value="">Gönderici İlçesi...</option>
+                                            <option disabled value="">Önce Şehir Seçiniz...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row " id="senderNeighborhoodRow">
+                                    <div class="col-md-12 mb-2 mt-2">
+                                        <select id="senderNeighborhood" name="senderNeighborhood" class="form-select" required>
+                                            <option selected disabled hidden value="">Gönderici Mahallesi...</option>
+                                            <option disabled value="">Önce Şehir ve İlçe Seçiniz...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row  " id="senderAdressRow">
+                                    <div class="col-md-12 mb-2 mt-2">
+                                        <div class="mb-3">
+                                            <textarea id="senderAdress" minlength="10" name="senderAdress" style="resize: none;" placeholder="Gönderici Adresi..." class="form-control" rows="3" cols="10" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="ortak">
+
+                                <div class="row " id="cargoWidthSizeRow">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input required maxlength="3" id="cargoWidth" name="cargoWidth" type="number" class="form-control numericinput" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="En (cm) Giriniz...">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input required maxlength="3" id="cargoSize" name="cargoSize" type="number" class="form-control numeric-input" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Boy(cm) Giriniz...">
+                                    </div>
+                                </div>
+
+                                <div class="row " id="cargoHeightWeightRow">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input required maxlength="3" id="cargoHeight" name="cargoHeight" type="number" class="form-control numericinput" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Yükseklik (cm) Giriniz...">
+                                    </div>
+
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input required maxlength="3" id="cargoWeight" name="cargoWeight" type="number" class="form-control numericinput" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Ağırlık (kg) Giriniz...">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 1.Parça Son-->
+                    <!-- 2. Parça Başlangıç -->
+
+                    <div class="card col-md-4 me-auto mt-0 mb-3 h-75">
+                        <span class="input-group-text mt-2 justify-content-center mb-3" id="basic-addon1">ALICI BİLGİLERİ</span>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-control mt-2 mb-2 me-auto">
+                                    <input checked class="form-check-input" type="radio" name="receiveroptions1" id="receiverradio1" value="0">
+                                    <label class="form-check-label" for="receiverradio1">Bireysel</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-control mt-2 mb-2 me-auto">
+                                    <input class="form-check-input" type="radio" name="receiveroptions1" id="receiverradio2" value="1">
+                                    <label class="form-check-label" for="receiverradio2">Kurumsal</label>
+                                </div>
+                            </div>
+
+                            <div id="receiverbireyselKisi">
+                                <div class="row" id="receiverTCPhoneRow">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input id="receiverTC" name="receiverTC" maxlength="11" type="number" class="form-control" oninput="javascript: if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="*Alıcı TC'si..." required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <input id="receiverPhone" name="receiverPhone" maxlength="11" type="number" class="form-control" oninput="javascript: if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Alıcı Telefonu..." required>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="receiverNameSurnameRow">
+                                    <div class="col-md-6" id="receiverNameDiv">
+                                        <input id="receiverName" name="receiverName" maxlength="30" type="text" class="form-control mb-2 mt-2" placeholder="Alıcı Adı..." oninput="validateInput(this)" required>
+                                    </div>
+
+                                    <div class="col-md-6" id="receiverSurnameDiv">
+                                        <input id="receiverSurname" name="receiverSurname" maxlength="30" type="text" class="form-control mb-2 mt-2" placeholder="Alıcı Soyadı..." oninput="validateInput(this)" required>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="receiverCityDistrictRow">
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <select id="receiverCity" name="receiverCity" class="form-select" required>
+                                            <option selected disabled hidden value="">Alıcı Şehri...</option>
+                                            <option disabled value="">Şehir Seçiniz...</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6 mb-2 mt-2">
+                                        <select id="receiverDistrict" name="receiverDistrict" class="form-select" required>
+                                            <option selected disabled hidden value="">Alıcı İlçesi...</option>
+                                            <option disabled value="">Önce Şehir Seçiniz...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row " id="receiverNeighborhoodRow">
+                                    <div class="col-md-12 mb-2 mt-2">
+                                        <select id="receiverNeighborhood" name="receiverNeighborhood" class="form-select" required>
+                                            <option selected disabled hidden value="">Alıcı Mahallesi...</option>
+                                            <option disabled value="">Önce Şehir ve İlçe Seçiniz...</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row" id="receiverAdressRow">
+                                    <div class="col-md-12 mb-2 mt-2">
+                                        <div class="mb-3">
+                                            <textarea id="receiverAdress" minlength="10" name="receiverAdress" style="resize: none;" placeholder="Alıcı Adresi..." class="form-control" rows="3" cols="10" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2.Parça Son-->
+                    <!-- 3. Parça Başlangıç -->
+
+                    <div class="card col-md-2 me-auto mt-0 mb-3 h-50">
+                        <span class="input-group-text mt-2 justify-content-center mb-3" id="basic-addon1">ONAYLAMA</span>
+
+                        <!--inputları labele çevir -->
+
+                        <div class=" mt-3 mb-2 ">
+                            <input class="form-control text-center fw-bold" style="pointer-events:none" type="text" id="desiBox" name="desiBox" value="Desi : 0.00">
+                        </div>
+
+                        <div class=" mt-3 mb-2 ">
+                            <input class="form-control text-center fw-bold" style="pointer-events:none" type="text" id="priceBox" name="priceBox" value="Tutar : 0.00 ₺">
+                        </div>
+
+                        <div class=" mt-5 mb-2 d-flex justify-content-center">
+                            <button class="btn btn-primary " type="button" id="saveButton" data-bs-toggle="modal" data-bs-target="#Modal"> Sipariş Oluştur </button>
+                        </div>
+                    </div>
+
+                    <!-- 3. Parça Son -->
+                </div>
+
+                <div class="modal" tabindex="-1" id="Modal">
+                    <div class="modal-dialog text-font">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Uyarı !</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Kaydetmek İstediğinize Emin Misiniz ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                <!-- data-bs-dismiss="modal onaylada pencere kapansın diye. SQL bağlayınca kaldır-->
+                                <button type="submit" id="modalBtn" form="createOrderForm" class="btn btn-primary" onclick="validateAndSave()" data-bs-dismiss="modal">Onayla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Sayfa2 Sonu -->
+        <div id="page3" style=" display: none;">
+
+            <!-- Sayfa 3 içeriği -->
+
+            <div class="overflow-auto">
+                <table id="activeTable" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Detaylar</th>
+                            <th>Takip No</th>
+                            <th>Gönderici Türü</th>
+                            <th>Alıcı Türü</th>
+                            <th>Gönderici İsim</th>
+                            <th>Alıcı İsim</th>
+                            <th>Gönderilen Şehir</th>
+                            <th>Düzenle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button class="btn btn-primary">Detaylar</button></td>
+                            <td>123123123123123</td>
+                            <td>Bireysel</td>
+                            <td>Bireysel</td>
+                            <td>Ahmet ODUN</td>
+                            <td>Mustafa KÜTÜK</td>
+                            <td>Bursa</td>
+                            <td><button class="btn btn-outline-primary">Düzenle</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-primary">Detaylar</button></td>
+                            <td>123412341234123</td>
+                            <td>Kurumsal</td>
+                            <td>Bireysel</td>
+                            <td>Meditek A.Ş</td>
+                            <td>Enes GİZLİ</td>
+                            <td>İstanbul</td>
+                            <td><button class="btn btn-outline-primary">Düzenle</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="btn btn-primary">Detaylar</button></td>
+                            <td>123451234512345</td>
+                            <td>Bireysel</td>
+                            <td>Kurumsal</td>
+                            <td>Enes GİZLİ</td>
+                            <td>Meditek A.Ş</td>
+                            <td>Konya</td>
+                            <td><button class="btn btn-outline-primary">Düzenle</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/js/panelScriptCreateOrder.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <script>
+        new DataTable('#example');
+    </script>
+
+    <script>
+
+
+         // AJAX çağrısı yapmak için bir JavaScript fonksiyonu oluşturuyoruz.
+       // function fetchReceivers() {
+       //     $.ajax({
+       @*//         url: '@Url.Action("GetReceivers", "Receiver")', // Controller'a gidecek AJAX isteği*@
+       //         method: 'GET',
+       //         dataType: 'json',
+       //         success: function (data) {
+       //             // Gelen veriyi işlemek ve kullanıcıya göstermek için burada JavaScript kodu kullanabilirsiniz.
+       //             // Örneğin, verileri bir tabloya doldurabilir veya listeleyebilirsiniz.
+       //
+       //             // Burada örnek bir kullanım:
+       //             var receiverListDiv = $("#receiverList");
+       //             var receiverTable = "<table>";
+       //             receiverTable += "<tr><th>Name</th><th>Surname</th></tr>";
+       //
+       //             data.forEach(function (receiver) {
+       //                 receiverTable += "<tr><td>" + receiver.RECEIVER_NAME + "</td><td>" + receiver.RECEIVER_SURNAME + "</td></tr>";
+       //             });
+       //
+       //             receiverTable += "</table>";
+       //             receiverListDiv.html(receiverTable);
+       //         },
+       //         error: function (xhr, status, error) {
+       //             console.log("Veri çekme hatası: ", error);
+       //         }
+       //     });
+       // }
+       //
+        // Sayfa yüklendiğinde verileri çekmek için çağrıyoruz.
+       // $(document).ready(function () {
+         //   fetchReceivers();
+       // });
+
+
+        function saveData()
+        {
+            var option1 = document.getElementById("radio1");
+            var option2 = document.getElementById("receiverradio1");
+
+
+            if (option1.checked && option2.checked) {
+                //bireysel-bireysel
+                var data = {
+
+                    'SENDER_PNUM': $('#senderTC').val(),
+                    'SENDER_PHONE': $('#senderPhone').val(),
+                    'SENDER_NAME': $('#senderName').val(),
+                    'SENDER_SURNAME': $('#senderSurname').val(),
+                    'SENDER_CITY': $('#senderCity').val(),
+                    'SENDER_DISTRICT': $('#senderDistrict').val(),
+                    'SENDER_NEIGHBOR': $('#senderNeighborhood').val(),
+                    'SENDER_ADRESS': $('#senderAdress').val(),
+                    'SENDER_TYPE': $('#radio1:checked').val(),
+                    'SENDER_STATE': "1",
+
+                    'RECEIVER_PNUM': $('#receiverTC').val(),
+                    'RECEIVER_PHONE': $('#receiverPhone').val(),
+                    'RECEIVER_NAME': $('#receiverName').val(),
+                    'RECEIVER_SURNAME': $('#receiverSurname').val(),
+                    'RECEIVER_CITY': $('#receiverCity').val(),
+                    'RECEIVER_DISTRICT': $('#receiverDistrict').val(),
+                    'RECEIVER_NEIGHBOR': $('#receiverNeighborhood').val(),
+                    'RECEIVER_ADRESS': $('#receiverAdress').val(),
+                    'RECEIVER_TYPE': $('#receiverradio1:checked').val(),
+                    'RECEIVER_STATE': "1",
+
+                    'CARGO_WIDTH': $('#cargoWidth').val(),
+                    'CARGO_SIZE': $('#cargoSize').val(),
+                    'CARGO_HEIGHT': $('#cargoHeight').val(),
+                    'CARGO_WEIGHT': $('#cargoWeight').val(),
+                    'CARGO_DESI': $('#desiBox').val(),
+                    'CARGO_PRICE': $('#priceBox').val()
+                };
+
+                $.ajax({
+                    url: '/Admin/SaveData',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('İstek başarısız oldu: ' + error);
+                    }
+                });
+            }
+            else if (!option1.checked && option2.checked) {
+                //kurumsal-bireysel
+                var data =
+                {
+
+                    'SENDER_PNUM': $('#senderTC').val(),
+                    'SENDER_PHONE': $('#senderPhone').val(),
+                    'SENDER_NAME': $('#senderName').val(),
+                    'SENDER_CITY': $('#senderCity').val(),
+                    'SENDER_DISTRICT': $('#senderDistrict').val(),
+                    'SENDER_NEIGHBOR': $('#senderNeighborhood').val(),
+                    'SENDER_ADRESS': $('#senderAdress').val(),
+                    'SENDER_TYPE': $('#radio2:checked').val(),
+                    'SENDER_STATE': "1",
+
+                    'RECEIVER_PNUM': $('#receiverTC').val(),
+                    'RECEIVER_PHONE': $('#receiverPhone').val(),
+                    'RECEIVER_NAME': $('#receiverName').val(),
+                    'RECEIVER_SURNAME': $('#receiverSurname').val(),
+                    'RECEIVER_CITY': $('#receiverCity').val(),
+                    'RECEIVER_DISTRICT': $('#receiverDistrict').val(),
+                    'RECEIVER_NEIGHBOR': $('#receiverNeighborhood').val(),
+                    'RECEIVER_ADRESS': $('#receiverAdress').val(),
+                    'RECEIVER_TYPE': $('#receiverradio1:checked').val(),
+                    'RECEIVER_STATE': "1",
+
+                    'CARGO_WIDTH': $('#cargoWidth').val(),
+                    'CARGO_SIZE': $('#cargoSize').val(),
+                    'CARGO_HEIGHT': $('#cargoHeight').val(),
+                    'CARGO_WEIGHT': $('#cargoWeight').val(),
+                    'CARGO_DESI': $('#desiBox').val(),
+                    'CARGO_PRICE': $('#priceBox').val()
+                };
+
+                $.ajax({
+                    url: '/Admin/SaveData',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('İstek başarısız oldu: ' + error);
+                    }
+                });
+            }
+
+            else if (option1.checked && !option2.checked) {
+                //Bireysel-Kurumsal
+                var data =
+                {
+
+                    'SENDER_PNUM': $('#senderTC').val(),
+                    'SENDER_PHONE': $('#senderPhone').val(),
+                    'SENDER_NAME': $('#senderName').val(),
+                    'SENDER_SURNAME': $('#senderSurname').val(),
+                    'SENDER_CITY': $('#senderCity').val(),
+                    'SENDER_DISTRICT': $('#senderDistrict').val(),
+                    'SENDER_NEIGHBOR': $('#senderNeighborhood').val(),
+                    'SENDER_ADRESS': $('#senderAdress').val(),
+                    'SENDER_TYPE': $('#radio1:checked').val(),
+                    'SENDER_STATE': "1",
+
+                    'RECEIVER_PNUM': $('#receiverTC').val(),
+                    'RECEIVER_PHONE': $('#receiverPhone').val(),
+                    'RECEIVER_NAME': $('#receiverName').val(),
+                    'RECEIVER_CITY': $('#receiverCity').val(),
+                    'RECEIVER_DISTRICT': $('#receiverDistrict').val(),
+                    'RECEIVER_NEIGHBOR': $('#receiverNeighborhood').val(),
+                    'RECEIVER_ADRESS': $('#receiverAdress').val(),
+                    'RECEIVER_TYPE': $('#receiverradio2:checked').val(),
+                    'RECEIVER_STATE': "1",
+
+                    'RECEIVER_STATE': "1",
+                    'CARGO_WIDTH': $('#cargoWidth').val(),
+                    'CARGO_SIZE': $('#cargoSize').val(),
+                    'CARGO_HEIGHT': $('#cargoHeight').val(),
+                    'CARGO_WEIGHT': $('#cargoWeight').val(),
+                    'CARGO_DESI': $('#desiBox').val(),
+                    'CARGO_PRICE': $('#priceBox').val()
+                };
+
+                $.ajax({
+                    url: '/Admin/SaveData',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('İstek başarısız oldu: ' + error);
+                    }
+                });
+            }
+
+            else if (!option1.checked && !option2.checked)
+            {
+                //Kurumsal-Kurumsal
+                var data =
+                {
+                    'SENDER_PNUM': $('#senderTC').val(),
+                    'SENDER_PHONE': $('#senderPhone').val(),
+                    'SENDER_NAME': $('#senderName').val(),
+                    'SENDER_CITY': $('#senderCity').val(),
+                    'SENDER_DISTRICT': $('#senderDistrict').val(),
+                    'SENDER_NEIGHBOR': $('#senderNeighborhood').val(),
+                    'SENDER_ADRESS': $('#senderAdress').val(),
+                    'SENDER_TYPE': $('#radio2:checked').val(),
+                    'SENDER_STATE': "1",
+
+                    'RECEIVER_PNUM': $('#receiverTC').val(),
+                    'RECEIVER_PHONE': $('#receiverPhone').val(),
+                    'RECEIVER_NAME': $('#receiverName').val(),
+                    'RECEIVER_CITY': $('#receiverCity').val(),
+                    'RECEIVER_DISTRICT': $('#receiverDistrict').val(),
+                    'RECEIVER_NEIGHBOR': $('#receiverNeighborhood').val(),
+                    'RECEIVER_ADRESS': $('#receiverAdress').val(),
+                    'RECEIVER_TYPE': $('#receiverradio2:checked').val(),
+                    'RECEIVER_STATE': "1",
+
+                    'CARGO_WIDTH': $('#cargoWidth').val(),
+                    'CARGO_SIZE': $('#cargoSize').val(),
+                    'CARGO_HEIGHT': $('#cargoHeight').val(),
+                    'CARGO_WEIGHT': $('#cargoWeight').val(),
+                    'CARGO_DESI': $('#desiBox').val(),
+                    'CARGO_PRICE': $('#priceBox').val()
+                };
+
+                $.ajax({
+                    url: '/Admin/SaveData',
+                    type: 'POST',
+                    data: data,
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('İstek başarısız oldu: ' + error);
+                    }
+                });
+            }
+        }
+
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#activeTable').DataTable({
+                ajax: {
+                    url: '@Url.Content("~/Admin/GetList")',
+                    type: "GET",
+                    datatype: "json",
+                    data: function (d) {
+                        d.search.value = "arama";
+                        d.arama = "arama";
+                    }
+                },
+                serverSide: true,
+                search: {
+                    return:false
+                },
+                'paging': true,
+                'sort': true,
+                'searching': true,
+                "columns": [
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<button class="btn btn-primary">Detaylar</button>';
+                        }
+                        , 'searchable': false
+                        ,'sortable':false
+                    },
+                    { "data": "ORDER_FNUM" , name:"ORDER_FNUM"},
+                    { "data": "SENDER_TYPE" , 'searchable':false},
+                    { "data": "RECEIVER_TYPE"  ,'searchable':false},
+                    { "data": "SENDER_NAME" },
+                    { "data": "RECEIVER_NAME" },
+                    { "data": "SENDER_CITY" , },
+                    {
+                        "data": null,
+                        "render": function (data, type, row) {
+                            return '<button class="btn btn-outline-primary">Düzenle</button>';
+                        }
+                        , 'searchable': false
+                        , 'sortable': false
+                    },
+                ]
+            });
+        });
+    </script>
+</body>
+</html>
